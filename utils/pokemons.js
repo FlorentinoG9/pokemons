@@ -8,8 +8,9 @@ const db = getFirestore();
 
 const colRef = collection(db, 'pokemons');
 
-const pokemons = getDocs(colRef).then((snap) => {
-	let dex = [];
+
+const dex = [];
+getDocs(colRef).then((snap) => {
 
 	snap.forEach((doc) => {
 		dex.push({
@@ -20,11 +21,7 @@ const pokemons = getDocs(colRef).then((snap) => {
 
 	dex.sort((a, b) => a.id - b.id);
 
-	console.log(dex);
-	return dex;
-})
-.catch(err => {
-  console.log(err);
-})
+});
+export default dex;
 
-export default pokemons;
+
