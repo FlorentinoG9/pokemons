@@ -10,7 +10,7 @@ export default function PokemonsProvider({ children }) {
 
 	useEffect(() => {
 		
-	}, [dex])
+	}, [pokemons])
 
 	const onClickHandler = (pokemon) => {
 		if (!selected || selected.id !== pokemon.id) {
