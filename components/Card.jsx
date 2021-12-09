@@ -2,11 +2,11 @@ import Image from 'next/image';
 import { useContext } from 'react';
 import { PokemonContext } from '../contexts/PokemonsContext';
 
-export default function Card({ pokemon, evolution = true }) {
+export default function Card({ pokemon, evolution = false }) {
 	const { evolutionHandler } = useContext(PokemonContext);
 	return (
 		<>
-			{pokemon && (
+			{pokemon ? (
 				<div className='flex flex-col m-6'>
 					<div className='bg-gradient-to-tl flex flex-col items-center from-blue-400 rounded-md to-blue-900 h-96 mb-5  border-white border '>
 						{pokemon.img && (
@@ -39,7 +39,7 @@ export default function Card({ pokemon, evolution = true }) {
 						</div>
 					</div>
 
-					{evolution && (
+					{!evolution && (
 						<div className='flex border-t justify-around'>
 							{pokemon.prev_evolution &&
 								pokemon.prev_evolution.map(({ num, name }) => {
@@ -71,9 +71,17 @@ export default function Card({ pokemon, evolution = true }) {
 						</div>
 					)}
 				</div>
+			) : (
+				<div className="flex flex-col items-center w-96 h-96">
+					<Image
+						src='/pokeball.svg'
+						className='text-gray-400'
+						width={100}
+						height={100}
+					/>
+					<div>{!evolution ? 'Select a pokemon' : 'Select an evolution'}</div>
+				</div>
 			)}
-
-			{!pokemon && <Image src='/pokeball.svg' width={100} height={100} />}
 		</>
 	);
 }

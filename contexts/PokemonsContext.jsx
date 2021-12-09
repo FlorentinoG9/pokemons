@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import dex from '../utils/pokemons';
 
 export const PokemonContext = createContext();
@@ -7,6 +7,10 @@ export default function PokemonsProvider({ children }) {
 	const [pokemons, setPokemons] = useState(dex);
 	const [selected, setSelected] = useState(null);
 	const [evolution, setEvolution] = useState(null);
+
+	useEffect(() => {
+		
+	}, [dex])
 
 	const onClickHandler = (pokemon) => {
 		if (!selected || selected.id !== pokemon.id) {

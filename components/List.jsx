@@ -4,7 +4,7 @@ import { PokemonContext } from '../contexts/PokemonsContext';
 
 export default function List() {
 	const { pokemons, onClickHandler } = useContext(PokemonContext);
-	console.log(pokemons);
+
 	return (
 		<ul className='flex flex-wrap justify-center overflow-hidden overflow-y-scroll max-h-48 md:max-h-screen md:w-80 md:justify-start'>
 			{pokemons.map((pokemon) => {
@@ -13,7 +13,6 @@ export default function List() {
 						key={pokemon.id}
 						className='rounded-md hover:bg-gray-600 focus:bg-gray-900'
 					>
-
 						<button onClick={() => onClickHandler(pokemon)}>
 							<Image src={pokemon.img} width={90} height={90} />
 						</button>
