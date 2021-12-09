@@ -3,19 +3,23 @@ import { useContext } from 'react';
 import { PokemonContext } from '../contexts/PokemonsContext';
 
 export default function List() {
-	const { pokemons } = useContext(PokemonContext);
-  console.log(pokemons);
+	const { pokemons, onClickHandler } = useContext(PokemonContext);
+	console.log(pokemons);
 	return (
-			<ul className="flex flex-wrap">
-        
-				{pokemons.map((pokemon) => {
-					return (
-						<li key={pokemon.id} className="rounded-md hover:bg-gray-600 cursor-pointer">
-							
-              <Image src={pokemon.img}  width={100} height={100}/>
-						</li>
-					);
-				})}
-			</ul>
+		<ul className='flex flex-wrap justify-center overflow-hidden overflow-y-scroll max-h-48 md:max-h-screen md:w-80 md:justify-start'>
+			{pokemons.map((pokemon) => {
+				return (
+					<li
+						key={pokemon.id}
+						className='rounded-md hover:bg-gray-600 focus:bg-gray-900'
+					>
+
+						<button onClick={() => onClickHandler(pokemon)}>
+							<Image src={pokemon.img} width={90} height={90} />
+						</button>
+					</li>
+				);
+			})}
+		</ul>
 	);
 }
