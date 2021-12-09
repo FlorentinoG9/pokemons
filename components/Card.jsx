@@ -8,11 +8,11 @@ export default function Card({ pokemon, evolution = true }) {
 		<>
 			{pokemon && (
 				<div className='flex flex-col m-6'>
-					<div className='bg-gradient-to-tl flex flex-col items-center from-blue-400 to-blue-900 h-96 mb-5  border-white border '>
+					<div className='bg-gradient-to-tl flex flex-col items-center from-blue-400 rounded-md to-blue-900 h-96 mb-5  border-white border '>
 						{pokemon.img && (
 							<Image src={pokemon.img} width='150' height='150' />
 						)}
-						<div className='bg-white text-black flex flex-col justify-between h-60 w-72 -my-10 px-4 py-10 m-3'>
+						<div className='bg-white text-black flex flex-col rounded-md justify-between h-60 w-72 -my-10 px-4 py-10 m-3'>
 							<p className='self-center text-lg'>{pokemon.name}</p>
 							<div className='self-center'>
 								{pokemon.type.map((item, idx) => {
