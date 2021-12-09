@@ -11,15 +11,10 @@ export default function PokemonsProvider({ children }) {
 
 	useEffect(() => {
 		const colRef = collection(db, 'pokemons');
-		const q = query(colRef, orderBy("id", "asc"))
+		const q = query(colRef, orderBy('id', 'asc'));
 
 		const dex = onSnapshot(q, (snap) => {
-
-			setPokemons(snap.docs.map(doc =>({...doc.data(), id: doc.id})))
-
-			pokemons.sort((a, b) => a.id - b.id);
-
-			console.log(pokemons);
+			setPokemons(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 		});
 
 		return dex;
