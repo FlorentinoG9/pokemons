@@ -6,7 +6,7 @@ export default function List() {
 	const { pokemons, onClickHandler } = useContext(PokemonContext);
 
 	return (
-		<ul className='flex flex-wrap justify-center overflow-hidden overflow-y-scroll max-h-48 md:max-h-screen md:w-80 md:justify-start'>
+		<ul className='flex flex-wrap justify-center overflow-hidden overflow-y-scroll max-h-48 xl:w-80 xl:max-h-screen lg:justify-start'>
 			{pokemons.map((pokemon) => {
 				return (
 					<li

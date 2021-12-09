@@ -1,30 +1,42 @@
 import { createContext, useState, useEffect } from 'react';
-import dex from '../utils/pokemons';
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+import db from '../firebase/config';
 
 export const PokemonContext = createContext();
 
 export default function PokemonsProvider({ children }) {
-	const [pokemons, setPokemons] = useState(dex);
+	const [pokemons, setPokemons] = useState([]);
 	const [selected, setSelected] = useState(null);
 	const [evolution, setEvolution] = useState(null);
 
 	useEffect(() => {
-		
-	}, [pokemons])
+		const colRef = collection(db, 'pokemons');
+		const q = query(colRef, orderBy("id", "asc"))
+
+		const dex = onSnapshot(q, (snap) => {
+
+			setPokemons(snap.docs.map(doc =>({...doc.data(), id: doc.id})))
+
+			pokemons.sort((a, b) => a.id - b.id);
+
+			console.log(pokemons);
+		});
+
+		return dex;
+	}, []);
 
 	const onClickHandler = (pokemon) => {
 		if (!selected || selected.id !== pokemon.id) {
 			setSelected(pokemon);
-      setEvolution(null)
+			setEvolution(null);
 		} else {
 			setSelected(null);
 			setEvolution(null);
 		}
-
 	};
 
 	const evolutionHandler = (id) => {
-    const index = parseInt(id) - 1;
+		const index = parseInt(id) - 1;
 		setEvolution(pokemons[index]);
 		console.log(evolution);
 	};
@@ -34,9 +46,9 @@ export default function PokemonsProvider({ children }) {
 			value={{
 				pokemons,
 				onClickHandler,
+				evolutionHandler,
 				selected,
 				evolution,
-				evolutionHandler,
 			}}
 		>
 			{children}
