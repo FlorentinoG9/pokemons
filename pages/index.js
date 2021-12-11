@@ -4,7 +4,8 @@ import PokemonsProvider from '../contexts/PokemonsContext';
 
 const Home = () => {
 	return (
-		<div className='flex flex-col items-center justify-center xl:flex-row xl:max-h-36 lg:items-start lg:justify-around'>
+		<div className='flex flex-col items-center justify-center xl:flex-row xl:max-h-full
+		 lg:items-start lg:justify-around'>
 			<PokemonsProvider>
 				<List />
         <Details/>
